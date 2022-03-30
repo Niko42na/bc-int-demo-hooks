@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import {i18n} from './translations/i18n.js';
+import { WelcomeComponent } from "./WelcomeComponent";
 
 function App() {
+  const [language, setLanguage] = useState('en');
+  
+  const handleClick=(e)=>{
+    e.preventDefault();
+    setLanguage(e.target.value);
+    i18n.changeLanguage(e.target.value);
+  }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <button value='uk' onClick={handleClick}>
+          Українська
+        </button>
+        <button value='en' onClick={handleClick}>
+          English
+        </button>
+        <button value='es' onClick={handleClick}>
+          Español
+        </button>
+        <button value='arab' onClick={handleClick}>
+          Arabic
+        </button>
+      </div>
+      <WelcomeComponent lang={language}/>
+   </div>
   );
 }
 
